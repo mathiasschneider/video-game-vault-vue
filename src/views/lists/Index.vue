@@ -3,7 +3,7 @@
     <div v-for="list in lists" v-bind:key="list.id">
       <h2>{{ list.title }}</h2>
       <p>Public: {{ list.public }}</p>
-      <router-link v-bind:to="`/show/${list.id}`">More Details</router-link>
+      <router-link v-bind:to="`/lists/${list.id}`">More Details</router-link>
     </div>
   </div>
 </template>

@@ -5,6 +5,8 @@
       |
       <router-link to="/lists">Lists Index</router-link>
       |
+      <router-link to="/lists/new">Lists New</router-link>
+      |
       <span v-if="isLoggedIn()">
         <router-link to="/logout">Logout</router-link>
       </span>
