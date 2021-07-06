@@ -3,11 +3,13 @@
     <div id="nav">
       <router-link to="/">Home</router-link>
       |
-      <router-link to="/lists">Lists Index</router-link>
-      |
-      <router-link to="/lists/new">Lists New</router-link>
-      |
       <span v-if="isLoggedIn()">
+        <router-link to="/users/">Account</router-link>
+        |
+        <router-link to="/lists">Lists</router-link>
+        |
+        <router-link to="/lists/new">Lists New</router-link>
+        |
         <router-link to="/logout">Logout</router-link>
       </span>
       <span v-else>
@@ -21,7 +23,19 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
+  data: function () {
+    return {
+      user: {},
+      errors: [],
+    };
+  },
+  created: function () {
+    axios.get(`/users/${this.$route.params.id}`).then((response) => {
+      this.user = response.data;
+    });
+  },
   methods: {
     isLoggedIn: function () {
       return localStorage.getItem("jwt");

@@ -8,6 +8,7 @@ import ListsIndex from "../views/lists/Index.vue";
 import ListsNew from "../views/lists/New.vue";
 import ListsShow from "../views/lists/Show.vue";
 import ListsEdit from "../views/lists/Edit.vue";
+import UsersShow from "../views/users/Show.vue";
 
 Vue.use(VueRouter);
 
@@ -51,6 +52,11 @@ const routes = [
     path: "/lists/:id/edit",
     name: "Lists-edit",
     component: ListsEdit,
+  },
+  {
+    path: "/users/:id/show",
+    name: "users-show",
+    component: UsersShow,
   },
 ];
 

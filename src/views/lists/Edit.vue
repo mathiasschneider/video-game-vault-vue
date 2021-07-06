@@ -15,7 +15,7 @@
 
         <label for="false">
           False
-          <input value="false" type="radio" id="publicRadio" name="public" v-model="editListParams.public" />
+          <input v-bind:value="false" type="radio" id="publicRadio" name="public" v-model="editListParams.public" />
         </label>
         <br />
       </div>
@@ -56,6 +56,7 @@ export default {
         });
     },
     editList: function () {
+      console.log(this.editListParams);
       axios
         .patch(`lists/${this.editListParams.id}`, this.editListParams)
         .then((response) => {
