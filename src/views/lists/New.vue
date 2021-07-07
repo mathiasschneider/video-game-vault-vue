@@ -11,10 +11,10 @@
         <label>Title:</label>
         <input type="text" required class="form-control" v-model="newListParams.title" />
       </div>
-      <div class="form-group">
-        <label>Public:</label>
-        <input type="checkbox" class="form-control checkbox" checked />
-      </div>
+      <!-- <div class="form-group">
+        <label>Public:</label> -->
+        <!-- <input type="checkbox" class="form-control checkbox" checked /> -->
+      <!-- </div> -->
       <input type="submit" class="btn btn-primary" value="Submit" />
     </form>
   </div>
@@ -31,7 +31,8 @@ export default {
   }),
   methods: {
     createList: function () {
-      this.newListParams.public = this.checked();
+      this.newListParams.public = true;
+      // this.newListParams.public = this.checked();
       axios
         .post("/lists", this.newListParams)
         .then((response) => {
@@ -43,9 +44,9 @@ export default {
           this.errors = error.response.data.errors;
         });
     },
-    checked: function () {
-      return document.querySelector(".checkbox").checked;
-    },
+    // checked: function () {
+    //   return document.querySelector(".checkbox").checked;
+    // },
   },
 };
 </script>

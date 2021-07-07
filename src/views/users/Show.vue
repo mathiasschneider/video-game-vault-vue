@@ -1,12 +1,12 @@
 <template>
   <div class="user-show">
-    <div v-for="user in users" v-bind:key="user.id">
+    <span v-if="$parent.getUserId() == user.id">
+      <p>User ID: {{ user.id }}</p>
       <p>Username: {{ user.username }}</p>
       <p>Email: {{ user.email }}</p>
-      <router-link v-if="`${user.id}` === `${currentUserId}`" :to="`/users/${user.id}/edit`" tag="button">
-        Edit Info
-      </router-link>
-    </div>
+      <router-link :to="`/users/${user.id}/edit`">Edit Info</router-link>
+    </span>
+    <span v-else>You may only view your own information</span>
   </div>
 </template>
 

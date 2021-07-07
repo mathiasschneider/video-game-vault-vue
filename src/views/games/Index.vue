@@ -32,13 +32,10 @@ export default {
     findGame: function () {
       axios
         .post("/games", {
-          params: {
-            search: this.search,
-          },
+          search: this.search,
         })
         .then((response) => {
-          this.games = response.data.Search;
-          console.log(response.data.Search);
+          this.games = response.data;
         });
     },
   },

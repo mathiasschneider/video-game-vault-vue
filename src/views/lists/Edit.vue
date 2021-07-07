@@ -3,7 +3,7 @@
     <div>
       Title:
       <input type="text" v-model="editListParams.title" placeholder="Title" />
-      <br />
+      <!-- <br />
       Public?
       <br />
       <div>
@@ -15,10 +15,10 @@
 
         <label for="false">
           False
-          <input v-bind:value="false" type="radio" id="publicRadio" name="public" v-model="editListParams.public" />
+          <input value="false" type="radio" id="publicRadio" name="public" v-model="editListParams.public" />
         </label>
         <br />
-      </div>
+      </div> -->
 
       <button class="more-info" v-on:click="editList()">Save</button>
     </div>

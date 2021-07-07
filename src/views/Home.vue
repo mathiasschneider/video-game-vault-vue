@@ -1,12 +1,12 @@
 <template>
   <div class="home">
-    <p>Hello, {{ user.username }}</p>
+    <p>HOME PAGE</p>
     <img alt="Vue logo" src="../assets/logo.png" />
   </div>
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 export default {
   data: function () {
     return {
@@ -14,10 +14,10 @@ export default {
       errors: [],
     };
   },
-  created: function () {
-    axios.get("/users/1").then((response) => {
-      this.user = response.data;
-    });
-  },
+  // created: function () {
+  //   axios.get("/users/1").then((response) => {
+  //     this.user = response.data;
+  //   });
+  // },
 };
 </script>

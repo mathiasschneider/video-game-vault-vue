@@ -23,7 +23,6 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
   data: function () {
     return {
@@ -31,17 +30,13 @@ export default {
       errors: [],
     };
   },
-  created: function () {
-    axios.get(`/users/${this.$route.params.id}`).then((response) => {
-      this.user.id = response.data;
-    });
-  },
+
   methods: {
     isLoggedIn: function () {
       return localStorage.getItem("jwt");
     },
     getUserId: function () {
-      return localStorage.getItem("id");
+      return localStorage.getItem("user_id");
     },
   },
 };

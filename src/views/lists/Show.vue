@@ -2,20 +2,20 @@
   <div class="lists-show">
     <h1>{{ listDetails.title }}</h1>
     <p>
-      <strong>Title:</strong>
-      {{ this.listDetails.title }}
-    </p>
-    <p>
       <strong>Public:</strong>
       {{ this.listDetails.public }}
     </p>
     <p>
-      <strong>User ID:</strong>
-      {{ this.listDetails.user_id }}
+      <strong>Author:</strong>
+      {{ this.listDetails.user.username }}
     </p>
-    <router-link :to="`/lists/${this.listDetails.id}/edit`">Edit List</router-link>
-    <br />
+    <!-- <p>Current User ID: {{ currentUserId }}</p>
+    <p>User ID: {{ this.listDetails.user.id }}</p> -->
+    <!-- <span v-if="$parent.getUserId() == this.listDetails.user.id"> -->
+    <router-link :to="`/`">Edit List</router-link>
     <button v-on:click="destroyList()">Delete list</button>
+    <!-- </span> -->
+    <!-- <span v-else>You may only edit your own lists</span> -->
   </div>
 </template>
 
@@ -35,10 +35,13 @@ export default {
     return {
       lists: [],
       listDetails: {},
+      user: {},
+      currentUserId: localStorage.getItem("user_id"),
     };
   },
   created: function () {
     this.showList();
+    this.showUser();
   },
   methods: {
     showList: function () {
@@ -51,6 +54,12 @@ export default {
         .catch((error) => {
           console.log(error.response.data);
         });
+    },
+    showUser: function () {
+      axios.get(`/users/${this.listDetails.user.id}`).then((response) => {
+        this.user = response.data;
+        console.log(this.user);
+      });
     },
     destroyList: function () {
       if (confirm("Are you sure you want to delete this list?")) {
