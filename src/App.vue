@@ -4,11 +4,11 @@
       <router-link to="/">Home</router-link>
       |
       <span v-if="isLoggedIn()">
-        <router-link to="/users/">Account</router-link>
+        <router-link :to="`/users/${getUserId()}`">My Account</router-link>
         |
         <router-link to="/lists">Lists</router-link>
         |
-        <router-link to="/lists/new">Lists New</router-link>
+        <router-link to="/games">Games</router-link>
         |
         <router-link to="/logout">Logout</router-link>
       </span>
@@ -33,12 +33,15 @@ export default {
   },
   created: function () {
     axios.get(`/users/${this.$route.params.id}`).then((response) => {
-      this.user = response.data;
+      this.user.id = response.data;
     });
   },
   methods: {
     isLoggedIn: function () {
       return localStorage.getItem("jwt");
+    },
+    getUserId: function () {
+      return localStorage.getItem("id");
     },
   },
 };

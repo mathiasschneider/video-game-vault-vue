@@ -1,5 +1,6 @@
 <template>
   <div class="index">
+    <router-link to="/lists/new">Create a new list</router-link>
     <div v-for="list in lists" v-bind:key="list.id">
       <h2>{{ list.title }}</h2>
       <p>Public: {{ list.public }}</p>
