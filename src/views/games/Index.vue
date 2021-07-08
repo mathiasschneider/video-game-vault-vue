@@ -10,8 +10,9 @@
 
     <div v-if="games">
       <div v-for="game in games" v-bind:key="game.igdb_game_id">
-        <h3>{{ game.name }}</h3>
-        <h3>{{ game.platforms }}</h3>
+        <p>{{ game.name }}</p>
+        <p>{{ game.platforms }}</p>
+        <router-link v-bind:to="`/games/${game.id}`">More Details</router-link>
       </div>
     </div>
 
@@ -36,6 +37,7 @@ export default {
         })
         .then((response) => {
           this.games = response.data;
+          console.log(response.data);
         });
     },
   },

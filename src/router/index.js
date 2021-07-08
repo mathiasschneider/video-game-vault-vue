@@ -11,6 +11,7 @@ import ListsEdit from "../views/lists/Edit.vue";
 import UsersShow from "../views/users/Show.vue";
 import UsersEdit from "../views/users/Edit.vue";
 import GamesIndex from "../views/games/Index.vue";
+import GamesShow from "../views/games/Show.vue";
 
 Vue.use(VueRouter);
 
@@ -69,6 +70,11 @@ const routes = [
     path: "/games/",
     name: "games-index",
     component: GamesIndex,
+  },
+  {
+    path: "/games/:id",
+    name: "games-show",
+    component: GamesShow,
   },
 ];
 
