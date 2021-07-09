@@ -2,9 +2,9 @@
   <div class="games-show">
     <div v-if="games">
       <div v-for="game in games" v-bind:key="game.igdb_game_id">
-        <img :src="game.cover.url.replace('t_thumb', 't_cover_big')" alt="" />
-        <p>{{ game.name }}</p>
-        <p>{{ game.id }}</p>
+        <img v-if="game.cover" :src="game.cover.url.replace('t_thumb', 't_cover_big')" :alt="game.name" />
+        <img v-else src="/no_image_found.jpeg" />
+        <h1>{{ game.name }}</h1>
         <div>
           <form v-on:submit.prevent="addToList()">
             <label for="lists">Add to list:</label>
