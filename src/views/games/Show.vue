@@ -2,8 +2,20 @@
   <div class="games-show">
     <div v-if="games">
       <div v-for="game in games" v-bind:key="game.igdb_game_id">
-        <img :src="game.cover.url" alt="" />
+        <img :src="game.cover.url.replace('t_thumb', 't_cover_big')" alt="" />
         <p>{{ game.name }}</p>
+        <p>{{ game.id }}</p>
+        <div>
+          <form v-on:submit.prevent="addToList()">
+            <label for="lists">Add to list:</label>
+            <select v-model="listId" id="lists">
+              <option v-for="list in lists" v-bind:key="list.id" :value="list.id">{{ list.title }}</option>
+            </select>
+            <input type="number" v-model="quantity" placeholder="Quantity" />
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
+        <p>{{ listId }}</p>
         <h2>Platform:</h2>
         <div v-for="platform in game.platforms" v-bind:key="platform.id">
           <p>{{ platform.name }}</p>
@@ -14,7 +26,7 @@
         </div>
         <h2>Similar Games:</h2>
         <div v-for="similar_game in game.similar_games" v-bind:key="similar_game.id">
-          <a :href="`/games/${similar_game.id}`">{{ similar_game.name }}</a>
+          <router-link :to="`/games/${similar_game.id}`">{{ similar_game.name }}</router-link>
         </div>
         <h2>Rating:</h2>
         <p>{{ game.rating }}</p>
@@ -24,7 +36,6 @@
         <div v-for="company in game.involved_companies.company" v-bind:key="company.id">
           <p>{{ involved_companies.company.name }}</p>
         </div> -->
-
       </div>
     </div>
   </div>
@@ -44,22 +55,41 @@ import axios from "axios";
 export default {
   data: function () {
     return {
-      games: [],
-      // lists: [],
+      games: {},
+      quantity: "",
+      cover: "",
+      lists: [],
+      listId: "",
       // user: {},
       // currentUserId: localStorage.getItem("user_id"),
     };
   },
   created: function () {
-    console.log(this.$route.params.id);
     axios.post(`/games/${this.$route.params.id}`).then((response) => {
       console.log(response.data);
       this.games = response.data;
+    });
+    axios.get("/lists").then((response) => {
+      console.log(response.data);
+      this.lists = response.data;
     });
     // this.showList();
     // this.showUser();
   },
   methods: {
+    addToList: function () {
+      axios.post("/list_games", {
+        list_id: this.listId,
+        igdb_game_id: this.$route.params.id,
+        quantity: this.quantity,
+        title: this.games[0].name,
+        image_url: this.games[0].cover.url,
+      });
+      // .then((response) => {
+      //   this.games = response.data;
+      //   console.log(response.data);
+      // });
+    },
     // showList: function () {
     //   axios
     //     .get(`/lists/${this.$route.params.id}`)

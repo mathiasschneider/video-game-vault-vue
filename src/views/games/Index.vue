@@ -4,13 +4,14 @@
     <div>
       <form v-on:submit.prevent="findGame()">
         <input type="text" v-model="search" placeholder="Search" />
-        <input type="submit" v-on:click="findGame" value="Submit" />
+        <input type="submit" value="Submit" />
       </form>
     </div>
 
     <div v-if="games">
       <div v-for="game in games" v-bind:key="game.igdb_game_id">
-        <!-- <img :src="game.cover.url" alt="/src/assets/no_image_found.jpeg" /> -->
+        <img v-if="game.cover" :src="game.cover.url" :alt="game.name" />
+        <img v-else src="/no_image_found.jpeg" />
         <h2>{{ game.name }}</h2>
         <div v-for="platform in game.platforms" v-bind:key="platform.id">
           <p>{{ platform.name }}</p>
