@@ -10,8 +10,11 @@
 
     <div v-if="games">
       <div v-for="game in games" v-bind:key="game.igdb_game_id">
-        <p>{{ game.name }}</p>
-        <p>{{ game.platforms }}</p>
+        <!-- <img :src="game.cover.url" alt="/src/assets/no_image_found.jpeg" /> -->
+        <h2>{{ game.name }}</h2>
+        <div v-for="platform in game.platforms" v-bind:key="platform.id">
+          <p>{{ platform.name }}</p>
+        </div>
         <router-link v-bind:to="`/games/${game.id}`">More Details</router-link>
       </div>
     </div>
