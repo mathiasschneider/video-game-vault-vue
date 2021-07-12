@@ -10,21 +10,20 @@
     </div>
 
     <div v-if="games">
-      <div v-for="(game, index) in games" v-bind:key="game.igdb_game_id">
+      <div v-for="game in games" v-bind:key="game.igdb_game_id">
         <img v-if="game.cover" :src="game.cover.url" :alt="game.name" />
         <img v-else src="/no_image_found.jpeg" />
         <h2>{{ game.name }}</h2>
-        <span>{{ index }}</span>
         <div v-for="platform in game.platforms" v-bind:key="platform.id">
           <p>{{ platform.name }}</p>
         </div>
         <div>
-          <form v-on:submit.prevent="addToList()">
+          <form v-on:submit.prevent="addToList(game)">
             <label for="lists">Add to list:</label>
-            <select v-model="listId" id="lists">
+            <select v-model="game.listId" id="lists">
               <option v-for="list in lists" v-bind:key="list.id" :value="list.id">{{ list.title }}</option>
             </select>
-            <input type="number" v-model="quantity" placeholder="Quantity" />
+            <input type="number" v-model="game.quantity" placeholder="Quantity" />
             <input type="submit" value="Submit" />
           </form>
         </div>
@@ -46,8 +45,6 @@ export default {
       games: [],
       search: "",
       lists: [],
-      listId: "",
-      quantity: "",
       cover: "",
     };
   },
@@ -68,15 +65,17 @@ export default {
           console.log(response.data);
         });
     },
-    addToList: function () {
+    addToList: function (game) {
       axios.post("/list_games", {
-        list_id: this.listId,
-        igdb_game_id: this.games[0].id,
-        quantity: this.quantity,
-        title: this.games[0].name,
-        image_url: this.games[0].cover.url,
+        list_id: game.listId,
+        igdb_game_id: game.id,
+        quantity: game.quantity,
+        title: game.name,
+        image_url: game.cover.url,
       });
       console.log("Added game to list");
+      game.listId = "";
+      game.quantity = "";
     },
   },
 };
