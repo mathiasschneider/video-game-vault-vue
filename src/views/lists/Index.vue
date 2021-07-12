@@ -3,7 +3,7 @@
     <router-link to="/lists/new">Create a new list</router-link>
     <div v-for="list in lists" v-bind:key="list.id">
       <h2>{{ list.title }}</h2>
-      <p>Public: {{ list.public }}</p>
+      <!-- <p>Public: {{ list.public }}</p> -->
       <router-link v-bind:to="`/lists/${list.id}`">More Details</router-link>
     </div>
   </div>

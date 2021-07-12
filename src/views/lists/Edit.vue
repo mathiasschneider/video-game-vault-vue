@@ -61,7 +61,7 @@ export default {
         .patch(`lists/${this.editListParams.id}`, this.editListParams)
         .then((response) => {
           console.log(response.data);
-          this.$router.push(`/lists/${response.data.id}`);
+          this.$router.push(`/lists/${this.editListParams.id}`);
         })
         .catch((error) => {
           console.log(error.response.data.errors);

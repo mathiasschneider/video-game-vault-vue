@@ -73,7 +73,6 @@ export default {
       console.log(response.data);
       this.lists = response.data;
     });
-    // this.showList();
     // this.showUser();
   },
   methods: {
@@ -85,22 +84,7 @@ export default {
         title: this.games[0].name,
         image_url: this.games[0].cover.url,
       });
-      // .then((response) => {
-      //   this.games = response.data;
-      //   console.log(response.data);
-      // });
     },
-    // showList: function () {
-    //   axios
-    //     .get(`/lists/${this.$route.params.id}`)
-    //     .then((response) => {
-    //       console.log("list show:", response.data);
-    //       return (this.gameDetails = response.data);
-    //     })
-    //     .catch((error) => {
-    //       console.log(error.response.data);
-    //     });
-    // },
     // showUser: function () {
     //   axios.get(`/users/${this.gameDetails.user.id}`).then((response) => {
     //     this.user = response.data;

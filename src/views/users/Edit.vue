@@ -1,6 +1,6 @@
 <template>
   <div class="users-edit">
-    <div>
+    <div v-if="$parent.getUserId() == editUserParams.id">
       Username:
       <input type="text" v-model="editUserParams.username" placeholder="Username" />
       <br />
@@ -17,6 +17,7 @@
       <button class="more-info" v-on:click="editUser()">Save</button>
       <button v-on:click="destroyUser()">Delete Account</button>
     </div>
+    <div v-else>You may only edit your own information</div>
   </div>
 </template>
 
@@ -32,7 +33,9 @@ export default {
   data: function () {
     return {
       users: [],
+      user: {},
       editUserParams: {},
+      currentUserId: localStorage.getItem("user_id"),
     };
   },
   created: function () {

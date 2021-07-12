@@ -33,7 +33,7 @@ export default {
     showUser: function () {
       axios.get(`/users/${this.$route.params.id}`).then((response) => {
         this.user = response.data;
-        console.log(this.user);
+        console.log("User Info:", this.user);
       });
     },
   },
