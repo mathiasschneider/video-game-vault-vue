@@ -1,0 +1,69 @@
+.modal-content {
+	border-radius: $bs-border-radius;
+	.modal-header {
+		border-radius: $bs-border-radius $bs-border-radius 0 0 ;
+	}
+
+	.close {
+		border: none;
+		font-size: 18px;
+		border-radius: 50%;
+		line-height: 18px;
+		height: 40px;
+		width: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+}
+
+
+.card {
+	border-radius: $border-radius;
+	box-shadow: $bs-box-shadow;
+
+	.card-header {
+		border-radius: $border-radius $border-radius 0 0;
+	}
+
+}
+
+.box-title--padding {
+	padding-left: 15px;
+}
+.bs-poster-img {
+
+		display: block;
+		border-radius: $border-radius;
+		box-shadow: $bs-box-shadow;
+
+
+}
+
+
+.block-cell.user {
+	border-radius: $border-radius;
+	background: white;
+}
+
+
+// Form
+
+.file-input {
+	.input-group .input-group-btn button:first-child {
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+}
+
+.form-horizontal {
+	.form-group {
+		margin-bottom: 16px;
+	}
+}
+
+
+.center-block {
+	margin-left: auto;
+	margin-right: auto;
+}

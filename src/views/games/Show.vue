@@ -1,8 +1,145 @@
 <template>
   <div class="games-show">
-    <div v-if="games">
-      <div v-for="game in games" v-bind:key="game.igdb_game_id">
-        <img v-if="game.cover" :src="game.cover.url.replace('t_thumb', 't_cover_big')" :alt="game.name" />
+    <div v-for="game in games" v-bind:key="game.igdb_game_id" class="main-container">
+      <!-- <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <nav aria-label="breadcrumb" role="navigation" class="pull-left">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="event-home.html"><i class="icon-home fa"></i></a>
+                </li>
+                <li class="breadcrumb-item"><a href="event-category.html">Events</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Search Results</li>
+              </ol>
+            </nav>
+
+            <div class="pull-right backtolist">
+              <a href="event-category.html">
+                <i class="fa fa-angle-double-left"></i>
+                Back to Results
+              </a>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 page-content col-thin-right">
+            <div class="event-details-title">
+              <h1 class="title">
+                <span class="auto-title left">{{ game.name }}</span>
+                <span class="auto-price pull-right">{{ Math.round(game.rating) }}/100</span>
+              </h1>
+            </div>
+            <div class="ev-image">
+              <img v-if="game.cover" :src="game.cover.url.replace('t_thumb', 't_1080p')" :alt="game.name" />
+              <img v-else src="/no_image_found.jpeg" />
+            </div>
+            <!-- <div class="inner inner-box ads-details-wrapper event">
+              <div class="Ads-Details">
+                <h4 class="text-uppercase"><strong>Summary</strong></h4>
+
+                <div class="ads-details-info">
+                  <p>
+                    {{ game.summary }}
+                  </p>
+                  <h4 class="text-uppercase"><strong>Similar Games:</strong></h4>
+
+                  <ul class="list-circle">
+                    <li v-for="similar_game in game.similar_games" v-bind:key="similar_game.id">
+                      <router-link :to="`/games/${similar_game.id}`">{{ similar_game.name }}</router-link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div> -->
+            <!--/.ads-details-wrapper-->
+          </div>
+          <!--/.page-content-->
+
+          <div class="col-md-6 page-sidebar-right">
+            <aside>
+              <!-- <div class="block-cell user">
+                <div class="cell-media"><img src="/images/users/2.jpg" alt="" /></div>
+                <div class="cell-content">
+                  <h5 class="title">Organize by</h5>
+                  <span class="name"><a href="#">David Jhone Jr.</a></span>
+                  <span class="rating">top rated</span>
+                </div>
+              </div> -->
+
+              <div class="card sidebar-card">
+                <div class="card-header">GAME DETAILS</div>
+                <div class="card-content">
+                  <div class="card-body text-left">
+                    <h5 class="text-uppercase"><strong>PLATFORMS</strong></h5>
+                    <div class="ev-info-details">
+                      <div class="ev-details">
+                        <li v-for="platform in game.platforms" v-bind:key="platform.id">
+                          {{ platform.name }}
+                        </li>
+                        <br />
+                      </div>
+                    </div>
+                    <h5 class="text-uppercase"><strong>GENRES</strong></h5>
+                    <div class="ev-info-details">
+                      <div class="ev-details">
+                        <li v-for="genre in game.genres" v-bind:key="genre.id">
+                          {{ genre.name }}
+                        </li>
+                        <br />
+                      </div>
+                    </div>
+                    <h5 class="text-uppercase"><strong>SUMMARY</strong></h5>
+                    <div class="ev-info-details">
+                      <div class="ev-details">
+                        <p>{{ game.summary }}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="ev-action">
+                    <div>
+                      <form v-on:submit.prevent="addToList()">
+                        <label for="lists">Add to list:</label>
+                        <select v-model="listId" id="lists">
+                          <option v-for="list in lists" v-bind:key="list.id" :value="list.id">{{ list.title }}</option>
+                        </select>
+                        <input type="number" v-model="quantity" placeholder="Quantity" />
+                        <input class="btn btn-success btn-block btn-post" type="submit" value="Submit" />
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card sidebar-card">
+                <div class="card-header">SIMILAR GAMES</div>
+                <div class="card-content">
+                  <div class="card-body text-left">
+                    <div class="ev-info-details">
+                      <div class="ev-details">
+                        <li v-for="similar_game in game.similar_games" v-bind:key="similar_game.id">
+                          <router-link :to="`/games/${similar_game.id}`">{{ similar_game.name }}</router-link>
+                        </li>
+                        <br />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--/.categories-list-->
+            </aside>
+          </div>
+
+          <!--/.page-side-bar-->
+        </div>
+      </div>
+    </div>
+    <!-- /.main-container -->
+    <!-- <div v-if="games"> -->
+    <!-- <div v-for="game in games" v-bind:key="game.igdb_game_id">
+        <img v-if="game.cover" :src="game.cover.url.replace('t_thumb', 't_1080p')" :alt="game.name" />
         <img v-else src="/no_image_found.jpeg" />
         <h1>{{ game.name }}</h1>
         <div>
@@ -32,12 +169,12 @@
         <p>{{ game.rating }}</p>
         <h2>Summary:</h2>
         <p>{{ game.summary }}</p>
-        <!-- <h2>Involved Companies:</h2>
+         <h2>Involved Companies:</h2>
         <div v-for="company in game.involved_companies.company" v-bind:key="company.id">
           <p>{{ involved_companies.company.name }}</p>
         </div> -->
-      </div>
-    </div>
+    <!-- </div> -->
+    <!-- </div> -->
   </div>
 </template>
 
@@ -60,8 +197,6 @@ export default {
       cover: "",
       lists: [],
       listId: "",
-      // user: {},
-      // currentUserId: localStorage.getItem("user_id"),
     };
   },
   created: function () {
@@ -73,7 +208,6 @@ export default {
       console.log(response.data);
       this.lists = response.data;
     });
-    // this.showUser();
   },
   methods: {
     addToList: function () {
@@ -85,12 +219,6 @@ export default {
         image_url: this.games[0].cover.url,
       });
     },
-    // showUser: function () {
-    //   axios.get(`/users/${this.gameDetails.user.id}`).then((response) => {
-    //     this.user = response.data;
-    //     console.log(this.user);
-    //   });
-    // },
   },
 };
 </script>

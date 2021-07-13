@@ -10,7 +10,7 @@
     <br />
     <br />
     <div v-for="list_game in list.list_games" v-bind:key="list_game.id">
-      <img :src="list_game.image_url" alt="" />
+      <router-link :to="`/games/${list_game.igdb_game_id}`"><img :src="list_game.image_url" alt="" /></router-link>
       <h3>{{ list_game.title }}</h3>
       <p>Quantity: {{ list_game.quantity }}</p>
       <button v-on:click="increaseListGame(list_game)">+</button>
