@@ -1,5 +1,77 @@
 <template>
-  <div class="lists-show">
+  <div class="main-container">
+    <div class="container">
+      <div class="col-md-12 page-content col-thin-right">
+        <div class="content-box col-xl-12">
+          <div class="row row-featured row-featured-category">
+            <div class="col-xl-12 box-title no-border">
+              <div class="inner">
+                <h2>
+                  {{ list.title }}
+                  <strong class="sell-your-item">
+                    <strong>{{ list.user.username }}</strong>
+                    <i class="icon-user fa"></i>
+                  </strong>
+                </h2>
+              </div>
+            </div>
+
+            <div class="category-list-wrapper jobs-list">
+              <div v-for="list_game in list.list_games" v-bind:key="list_game.id" class="item-list job-item">
+                <div class="row">
+                  <div class="col-sm-1 col-2 col-xs-2 no-padding photobox">
+                    <div class="add-image">
+                      <router-link :to="`/games/${list_game.igdb_game_id}`">
+                        <img v-if="list_game.image_url" :src="list_game.image_url" class="thumbnail no-margin" />
+                        <img v-else src="/no_image_found.jpeg" class="thumbnail no-margin" />
+                      </router-link>
+                    </div>
+                  </div>
+                  <!--/.photobox-->
+                  <div class="col-sm-10 col-10 col-xs-10 add-desc-box">
+                    <div class="ads-details jobs-item">
+                      <br />
+                      <h4 class="job-title">
+                        <router-link :to="`/games/${list_game.igdb_game_id}`">{{ list_game.title }}</router-link>
+                      </h4>
+                      <div class="job-desc">Quantity: {{ list_game.quantity }}</div>
+
+                      <div class="job-actions">
+                        <ul class="list-unstyled list-inline">
+                          <li>
+                            <button
+                              class="btn btn-border btn-success nav-link"
+                              v-on:click="increaseListGame(list_game)"
+                            >
+                              Qty +
+                            </button>
+                          </li>
+                          <li>
+                            <button
+                              class="btn btn-border btn-warning nav-link"
+                              v-on:click="decreaseListGame(list_game)"
+                            >
+                              Qty -
+                            </button>
+                          </li>
+                          <li>
+                            <button class="btn btn-border btn-danger nav-link" v-on:click="removeListGame(list_game)">
+                              Remove from list
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="lists-show">
     <h1>{{ list.title }}</h1>
     <p>
       <strong>Author:</strong>
@@ -19,7 +91,7 @@
       <br />
       <br />
     </div>
-  </div>
+  </div> -->
 </template>
 
 <style>

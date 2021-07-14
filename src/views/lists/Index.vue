@@ -21,14 +21,14 @@
                 <div class="row">
                   <div class="col-sm-1 col-2 col-xs-2 no-padding photobox">
                     <div class="add-image">
-                      <a href="">
+                      <router-link :to="`/lists/${list.id}`">
                         <img
                           v-if="list.list_games.length > 0"
                           :src="list.list_games[0].image_url"
                           class="thumbnail no-margin"
                         />
                         <img v-else src="/no_image_found.jpeg" class="thumbnail no-margin" />
-                      </a>
+                      </router-link>
                     </div>
                   </div>
                   <!--/.photobox-->
@@ -36,7 +36,7 @@
                     <div class="ads-details jobs-item">
                       <br />
                       <h4 class="job-title">
-                        <a href="job-details.html">{{ list.title }}</a>
+                        <router-link :to="`/lists/${list.id}`">{{ list.title }}</router-link>
                       </h4>
 
                       <div class="job-actions">

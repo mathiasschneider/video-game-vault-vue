@@ -37,9 +37,14 @@
         <div class="col-xl-12 content-box">
           <div class="row row-featured row-featured-category">
             <div class="col-xl-12 box-title no-border">
-              <div v-if="games.length > 0" class="inner">
+              <div v-if="sentSearch && games.length > 0" class="inner">
                 <h2>
                   <span><strong>Results</strong></span>
+                </h2>
+              </div>
+              <div v-if="sentSearch && games.length == 0" class="inner">
+                <h2>
+                  <span><strong>No Results Found</strong></span>
                 </h2>
               </div>
             </div>
@@ -145,6 +150,7 @@ export default {
       search: "",
       lists: [],
       cover: "",
+      sentSearch: false,
     };
   },
   created: function () {
@@ -162,6 +168,7 @@ export default {
         .then((response) => {
           this.games = response.data;
           console.log(response.data);
+          this.sentSearch = true;
         });
     },
     addToList: function (game) {
