@@ -100,16 +100,39 @@
                   </div>
 
                   <div class="ev-action">
-                    <div>
-                      <form v-on:submit.prevent="addToList()">
-                        <label for="lists">Add to list:</label>
-                        <select v-model="listId" id="lists">
-                          <option v-for="list in lists" v-bind:key="list.id" :value="list.id">{{ list.title }}</option>
-                        </select>
-                        <input type="number" v-model="quantity" placeholder="Quantity" />
-                        <input class="btn btn-success btn-block btn-post" type="submit" value="Submit" />
-                      </form>
-                    </div>
+                    <form v-on:submit.prevent="addToList()">
+                      <div class="row">
+                        <div class="form-group col-md-6">
+                          <label for="inputList">Choose List</label>
+                          <select v-model="listId" id="inputList" class="form-control">
+                            <option v-for="list in lists" v-bind:key="list.id" :value="list.id">
+                              {{ list.title }}
+                            </option>
+                            >
+                          </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label for="inputEmail4">Quantity</label>
+                          <input
+                            type="number"
+                            v-model="quantity"
+                            class="form-control"
+                            id="inputEmail4"
+                            placeholder="Qty"
+                          />
+                        </div>
+                      </div>
+
+                      <button type="submit" class="btn btn-success btn-block btn-post">Add to List</button>
+                    </form>
+                    <!-- <form v-on:submit.prevent="addToList()">
+                      <label for="lists">Add to list:</label>
+                      <select v-model="listId" id="lists">
+                        <option v-for="list in lists" v-bind:key="list.id" :value="list.id">{{ list.title }}</option>
+                      </select>
+                      <input type="number" v-model="quantity" placeholder="Quantity" />
+                      <input class="btn btn-success btn-block btn-post" type="submit" value="Submit" />
+                    </form> -->
                   </div>
                 </div>
               </div>
