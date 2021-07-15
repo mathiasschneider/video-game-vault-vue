@@ -1,6 +1,6 @@
 <template>
   <div class="main-container">
-    <div class="container">
+    <div v-if="currentUserId" class="container">
       <div class="col-md-12 page-content col-thin-right">
         <div class="content-box col-xl-12">
           <div class="row row-featured row-featured-category">
@@ -61,7 +61,23 @@
         </div>
       </div>
     </div>
+    <div v-else class="main-container">
+      <div class="container">
+        <div class="inner-box">
+          <div class="welcome-msg">
+            <div class="row">
+              <div class="col-md-12">
+                <h1 class="page-sub-header2 clearfix no-padding">
+                  You need to be logged in if you want to create lists.
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
   <!-- <div class="main-container">
     <div class="container">
       <div class="col-md-12 page-content col-thin-left">
@@ -116,6 +132,7 @@ export default {
       newlistTitle: "",
       newlistPublic: "",
       newlistUser_id: "",
+      currentUserId: localStorage.getItem("user_id"),
     };
   },
   created: function () {

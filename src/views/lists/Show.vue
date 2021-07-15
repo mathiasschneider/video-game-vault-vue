@@ -36,7 +36,7 @@
                       </h4>
                       <div class="job-desc">Quantity: {{ list_game.quantity }}</div>
 
-                      <div class="job-actions">
+                      <div v-if="$parent.getUserId() == list.user.id" class="job-actions">
                         <ul class="list-unstyled list-inline">
                           <li>
                             <button
@@ -116,6 +116,7 @@ export default {
   },
   created: function () {
     this.showList();
+    this.showUser();
   },
   methods: {
     showList: function () {
@@ -128,6 +129,12 @@ export default {
         .catch((error) => {
           console.log(error.response.data);
         });
+    },
+    showUser: function () {
+      axios.get(`/users/${this.$route.params.id}`).then((response) => {
+        this.user = response.data;
+        // console.log("User Info:", this.user);
+      });
     },
     destroyList: function () {
       if (confirm("Are you sure you want to delete this list?")) {
