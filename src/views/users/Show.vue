@@ -89,7 +89,12 @@
                         <label class="col-sm-3 control-label">Email:</label>
 
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" v-model="editUserParams.email" placeholder="Email" />
+                          <input
+                            type="text"
+                            class="form-control email"
+                            v-model="editUserParams.email"
+                            placeholder="Email"
+                          />
                         </div>
                       </div>
                       <div class="form-group">
@@ -113,6 +118,7 @@
                             class="form-control"
                             v-model="editUserParams.password"
                             placeholder="Password"
+                            required
                           />
                         </div>
                       </div>
@@ -125,6 +131,7 @@
                             class="form-control"
                             v-model="editUserParams.password_confirmation"
                             placeholder="Confirm Password"
+                            required
                           />
                         </div>
                       </div>
