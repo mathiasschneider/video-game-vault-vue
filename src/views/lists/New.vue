@@ -1,5 +1,46 @@
 <template>
-  <div class="lists-new">
+  <div class="main-container">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-5 login-box">
+          <div class="card card-default">
+            <!-- <div class="panel-intro text-center">
+              <h2 class="logo-title"> -->
+            <!-- Original Logo will be placed here  -->
+            <!-- <span class="logo-icon"><i class="icon icon-search-1 ln-shadow-logo shape-0"></i></span>
+                BOOT
+                <span>CLASSIFIED</span>
+              </h2>
+            </div> -->
+            <div class="card-body">
+              <form role="form" class="loginForm" v-on:submit.prevent="submit()">
+                <div class="form-group">
+                  <label for="list-title" class="control-label">List Title:</label>
+                  <div class="input">
+                    <input id="list-title" type="text" class="form-control" v-model="newListParams.title" />
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-md-12">
+                    <button class="btn btn-primary btn-block btn-post" v-on:click="createList()">
+                      Create new list
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="login-box-btm text-center">
+            <p>
+              <router-link :to="`/lists/`"><strong>Back to my lists</strong></router-link>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="lists-new">
     <form v-on:submit.prevent="createList()">
       <h1>Create a new list</h1>
       <ul>
@@ -11,13 +52,9 @@
         <label>Title:</label>
         <input type="text" required class="form-control" v-model="newListParams.title" />
       </div>
-      <!-- <div class="form-group">
-        <label>Public:</label> -->
-        <!-- <input type="checkbox" class="form-control checkbox" checked /> -->
-      <!-- </div> -->
       <input type="submit" class="btn btn-primary" value="Submit" />
     </form>
-  </div>
+  </div> -->
 </template>
 
 <style></style>
