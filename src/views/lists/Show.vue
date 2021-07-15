@@ -40,7 +40,7 @@
                         <ul class="list-unstyled list-inline">
                           <li>
                             <button
-                              class="btn btn-border btn-success nav-link"
+                              class="btn btn-border btn-primary nav-link"
                               v-on:click="increaseListGame(list_game)"
                             >
                               Qty +
@@ -48,14 +48,14 @@
                           </li>
                           <li>
                             <button
-                              class="btn btn-border btn-warning nav-link"
+                              class="btn btn-border btn-primary nav-link"
                               v-on:click="decreaseListGame(list_game)"
                             >
                               Qty -
                             </button>
                           </li>
                           <li>
-                            <button class="btn btn-border btn-danger nav-link" v-on:click="removeListGame(list_game)">
+                            <button class="btn btn-border btn-primary nav-link" v-on:click="removeListGame(list_game)">
                               Remove from list
                             </button>
                           </li>

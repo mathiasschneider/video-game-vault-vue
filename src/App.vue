@@ -104,7 +104,7 @@
                 </router-link>
               </li>
               <li v-if="!isLoggedIn()" class="postadd nav-item">
-                <router-link class="btn btn-block btn-border btn-post btn-success nav-link" to="/login">
+                <router-link class="btn btn-block btn-border btn-post btn-primary nav-link" to="/login">
                   Log In
                 </router-link>
               </li>
