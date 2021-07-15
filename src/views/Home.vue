@@ -12,8 +12,8 @@
           </p>
 
           <div class="btn-box">
-            <router-link to="/signup" class="btn btn-primary btn-round">Sign Up</router-link>
-            <router-link to="/login" class="btn btn-primary btn-round">Log In</router-link>
+            <router-link v-if="!isLoggedIn()" to="/signup" class="btn btn-primary btn-round">Sign Up</router-link>
+            <router-link v-if="!isLoggedIn()" to="/login" class="btn btn-primary btn-round">Log In</router-link>
           </div>
         </div>
       </div>
@@ -33,6 +33,14 @@ export default {
       user: {},
       errors: [],
     };
+  },
+  methods: {
+    isLoggedIn: function () {
+      return localStorage.getItem("jwt");
+    },
+    getUserId: function () {
+      return localStorage.getItem("user_id");
+    },
   },
   // created: function () {
   //   axios.get("/users/1").then((response) => {

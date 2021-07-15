@@ -1,6 +1,6 @@
 <template>
   <div class="main-container">
-    <div v-if="currentUserId" class="container">
+    <div class="container">
       <div class="col-md-12 page-content col-thin-right">
         <div class="content-box col-xl-12">
           <div class="row row-featured row-featured-category">
@@ -61,7 +61,7 @@
         </div>
       </div>
     </div>
-    <div v-else class="main-container">
+    <!-- <div v-else class="main-container">
       <div class="container">
         <div class="inner-box">
           <div class="welcome-msg">
@@ -75,7 +75,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 
   <!-- <div class="main-container">
@@ -129,6 +129,8 @@ export default {
   data: function () {
     return {
       lists: [],
+      user: {},
+      errors: [],
       newlistTitle: "",
       newlistPublic: "",
       newlistUser_id: "",
@@ -144,6 +146,14 @@ export default {
         console.log(response.data);
         return (this.lists = response.data);
       });
+    },
+    methods: {
+      isLoggedIn: function () {
+        return localStorage.getItem("jwt");
+      },
+      getUserId: function () {
+        return localStorage.getItem("user_id");
+      },
     },
     // destroyList: function () {
     //   if (confirm("Are you sure you want to delete this list?")) {
